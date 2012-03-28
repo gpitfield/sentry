@@ -56,7 +56,7 @@ def _get_group_list(request, project, view=None):
             logger.exception('Error initializing filter %r: %s', cls, e)
 
     event_list = Group.objects
-    if request.GET.get('bookmarks'):
+    if request.GET.get('bookmarks') and False:
         event_list = event_list.filter(
             bookmark_set__project=project,
             bookmark_set__user=request.user,
@@ -108,7 +108,7 @@ def _get_group_list(request, project, view=None):
     if since in DATE_VALUES:
         event_list = event_list.filter(last_seen__gte=datetime.datetime.now() - DATE_VALUES[since])
 
-    if sort_clause:
+    if sort_clause and False:
         event_list = event_list.extra(
             select={'sort_value': sort_clause},
         ).order_by('-sort_value', '-last_seen')
